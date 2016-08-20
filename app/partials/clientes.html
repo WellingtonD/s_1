@@ -1,0 +1,102 @@
+<h1> Cadastro de Clientes </h1>
+
+<p class="alert alert-info" ng-show="showMensagem">
+  {{mensagem}}
+</p>
+
+<!-- novidade, a row com o campo de busca -->
+<div class="row">
+	<div class="col-md-12">
+        <form>
+            <div class="input-group">                
+                <span class="input-group-btn">
+                    <a class="btn btn-primary" href="/clientes/new">Novo Cliente</a>
+                </span>                        
+                <input class="form-control" placeholder="pesquisar clientes" ng-model="filtro" ng-model-options="{ debounce: 500 }">
+            </div>
+        </form>
+    </div> <!-- fim col-md-12 -->
+</div> <!-- fim row -->	
+
+<div class="row"> <div class="col-md-12">
+  <br>
+	<table class="table table-condensed table-hover table-striped">
+    	<thead>
+      		<tr>
+        		<th>ID</th>
+        		<th>Nome</th>
+      		</tr>
+    	</thead>
+    	<tbody>
+      		<tr ng-repeat="cliente in clientes" ng-click="alterarCliente(cliente)">
+        		<td>{{ cliente.pk }}</td>
+        		<td>{{ cliente.nome }}</td>
+      		</tr>
+    	</tbody>
+  	</table>
+</div> </div>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+    	<!-- Modal content-->
+    	<div class="modal-content">      		
+      		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal">&times;</button>
+        		<h4 class="modal-title">Cliente</h4>
+      		</div>			
+			<form novalidate name="formulario" class="form-horizontal" ng-submit="submeter()">
+      			<div class="modal-body">			 	
+			    	<div class="form-group">
+			      		<label class="col-sm-2 control-label" for="nome">Nome</label>
+			      		<div class="col-sm-10">
+			        		<input class="form-control" name="nome" type="text" ng-model="cliente.nome" required ng-maxlength="200" ng-minlength="3">
+                            <span ng-show="formulario.$submitted && formulario.nome.$error.required" class="form-control alert-danger">
+                                Campo obrigatório
+                            </span> 
+                            <span ng-show="formulario.$submitted && formulario.nome.$error.maxlength" class="form-control alert-danger">
+                                No máximo 200 caracteres!
+                            </span>  
+                            <span ng-show="formulario.nome.$error.minlength" class="form-control alert-danger">
+                                No minimo 3 caracteres!
+                            </span> 
+			      	 	</div>
+					</div>					        
+                    <div class="form-group">			      		
+			      		<label class="col-sm-2 control-label" for="data_nascimento">Nascimento</label>
+			      		<div class="col-sm-10">
+			        		<input class="form-control" name="data_nascimento" type="text" ng-model="cliente.data_nascimento" ng-minlength="3">
+                            <span ng-show="formulario.$submitted && formulario.data_nascimento.$error.required" class="form-control alert-danger">
+                                Campo obrigatório
+                            </span> 
+                            <span ng-show="formulario.$submitted && formulario.data_nascimento.$error.maxlength" class="form-control alert-danger">
+                                No máximo 10 caracteres!
+                            </span>  
+                            <span ng-show="formulario.data_nascimento.$error.minlength" class="form-control alert-danger">
+                                No minimo 3 caracteres!
+                            </span>                           
+			      	    </div>
+			        </div>
+					<!--
+					<div ng-controller="OptCtrl">
+						<div summernote config="options" id="summernote" ng-model="cliente.observacoes">				
+						</div>
+					</div>
+					-->							    
+	      		</div>
+      			<div class="modal-footer">		        	
+			        <button type="submit" class="btn btn-sm btn-primary">Salvar</button>			 
+                	<button type="button" class="btn btn-sm btn-danger" ng-click="remover(cliente)" ng-show="cliente.id">Delete</button>
+      		    </div>
+  		    </form>
+    	</div>
+  	</div>
+</div>
+
+<!-- Pagination -->
+<nav aria-label="...">
+  	<ul class="pager">
+    	<li class="previous" ng-click="mudarPagina(-1)" ng-show="pagina > 1"><a><span aria-hidden="true">&larr;</span> Anterior</a></li>
+    	<li class="next" ng-click="mudarPagina(1)" ng-hide="clientes.length < (registrosPorPagina-removidos)"><a>Próxima <span aria-hidden="true">&rarr;</span></a></li>
+  	</ul>
+</nav>

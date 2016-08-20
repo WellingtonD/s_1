@@ -1,0 +1,51 @@
+<h1>{{titulo}}</h1>
+
+<p class="alert alert-info" ng-show="showMensagem">
+  {{mensagem}}
+</p>
+
+			<form novalidate name="formulario" class="form-horizontal" ng-submit="submeter()">
+      			<div class="modal-body">			 	
+			    	<div class="form-group">
+			      		<label class="col-sm-2 control-label" for="nome">Nome</label>
+			      		<div class="col-sm-10">
+			        		<input class="form-control" name="nome" type="text" ng-model="prontuario.nome" required ng-maxlength="200" ng-minlength="3">
+                            <span ng-show="formulario.$submitted && formulario.nome.$error.required" class="form-control alert-danger">
+                                Campo obrigatório
+                            </span> 
+                            <span ng-show="formulario.$submitted && formulario.nome.$error.maxlength" class="form-control alert-danger">
+                                No máximo 200 caracteres!
+                            </span>  
+                            <span ng-show="formulario.nome.$error.minlength" class="form-control alert-danger">
+                                No minimo 3 caracteres!
+                            </span> 
+			      	 	</div>
+					</div>					        
+                    <div class="form-group">			      		
+			      		<label class="col-sm-2 control-label" for="data_nascimento">Nascimento</label>
+			      		<div class="col-sm-10">
+			        		<input class="form-control" name="data_nascimento" type="text" ng-model="prontuario.data_nascimento" ng-minlength="3">
+                            <span ng-show="formulario.$submitted && formulario.data_nascimento.$error.required" class="form-control alert-danger">
+                                Campo obrigatório
+                            </span> 
+                            <span ng-show="formulario.$submitted && formulario.data_nascimento.$error.maxlength" class="form-control alert-danger">
+                                No máximo 10 caracteres!
+                            </span>  
+                            <span ng-show="formulario.data_nascimento.$error.minlength" class="form-control alert-danger">
+                                No minimo 3 caracteres!
+                            </span>                           
+			      	    </div>
+			        </div>
+					<!--
+					<div ng-controller="OptCtrl">
+						<div summernote config="options" id="summernote" ng-model="prontuario.observacoes">				
+						</div>
+					</div>
+					-->							    
+	      		</div>
+      			<div class="modal-footer">		        	
+			        <button type="button" class="btn btn-sm btn-danger pull-left" ng-click="remover(prontuario)" ng-show="prontuario.id">Delete</button>
+					<button type="submit" class="btn btn-sm btn-primary">Salvar</button>			                 	
+					<a href="/prontuarios" class="btn btn-sm btn-default">Voltar</a>						
+      		    </div>
+  		    </form>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="estoque">
+    <head>
+        <base href="/">    
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Studio DM</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/efeitos.css">
+
+
+
+<link rel="stylesheet" href="js/summernote/summernote.css">
+
+
+
+        <script src="js/lib/jquery.min.js"></script>
+        <script src="js/lib/bootstrap.min.js"></script>
+<script src="js/summernote/summernote.min.js"></script>
+<script src="js/summernote/summernote-ext-print.js"></script>
+
+
+
+        <script src="js/lib/angular.min.js"></script>
+        <!-- importando o módulo ngAnimte -->
+        <script src="js/lib/angular-animate.min.js"></script>
+        <!-- importando o módulo ngRoute -->
+        <script src="js/lib/angular-route.min.js"></script>   
+        <!-- importando o módulo ngResource que substitui o $http -->
+        <script src="js/lib/angular-resource.min.js"></script>
+        <!-- angular bootstrap ui-->
+        <script src="js/lib/ui-bootstrap-tpls-1.3.2.min.js"></script>
+        
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-sanitize.js"></script>
+        
+        <!-- possibilita manter o estado do controller -->
+        <script data-require="ui-router@*" data-semver="0.2.13" src="//rawgit.com/angular-ui/ui-router/0.2.13/release/angular-ui-router.js"></script>         
+        <script src="js/lib/statehelper.min.js"></script>
+        
+        <script src="js/services/meus-servicos.js"></script>
+
+        
+        <script src="js/SqlCustom.js"></script>
+        <script src="js/helpers/DateHelper.js"></script>
+        <script src="js/classes/Cliente.js"></script>
+
+        <script src="js/main.js"></script>
+        <script src="js/controllers/prontuarios-controller.js"></script>
+        <script src="js/controllers/prontuario-controller.js"></script>
+
+        <script src="js/controllers/clientes-controller.js"></script>
+        <script src="js/controllers/cliente-controller.js"></script>
+        <script src="js/controllers/cliente-telefones-controller.js"></script>
+        <script src="js/controllers/cliente-diario-controller.js"></script>
+        
+        <script src="js/controllers/operadoras-telefonia-controller.js"></script>
+        <script src="js/controllers/summernote-controller.js"></script>
+
+        <script src="js/directives/minhas-diretivas.js"></script>
+
+
+
+    	<link rel="stylesheet" type="text/css" href="css/component.css" />
+        <link rel="stylesheet" href="css/font-awesome-4.6.3/css/font-awesome.min.css">
+
+
+
+<script src="http://cdn.rawgit.com/summernote/angular-summernote/0.8.1/dist/angular-summernote.min.js"></script>
+
+
+		<script src="js/modernizr.custom.js"></script>
+
+        
+
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse">
+            <div class="container">                       
+                <ul class="nav navbar-nav" style="float: right">
+                    <li>
+                        <a href="#" class="btn btn-default showLeft" style="background:none; border:none; box-shadow:none;">                              
+                            <i class="fa fa-bars" aria-hidden="true"></i>
+                        </a>                          
+                    </li>
+                </ul> 
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Studio DM</a>
+                </div> 
+            </div>
+        </nav>
+
+		<div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+            <div class="panel-group" id="accordion">
+                <div class="panel">
+                    <div>                              
+                        <h3 style="padding: 0em 0em 0em 0.5em">                           
+                            Menu
+                            <a class="btn btn-outline showLeft" style="float: right; background:none; border:none; box-shadow:none;">
+                                <i class="fa fa-close" aria-hidden="true"></i>
+                            </a>                          
+                        </h3>                        
+                    </div>
+                    <hr class="divider">
+                </div>                
+                <div class="panel">
+                    <div class="cbp-spmenu-header">                        
+                        <h4 data-toggle="collapse" data-parent="#accordion" href="#collapseOne">                            
+                            <i class="fa fa-angle-down" aria-hidden="true"></i>
+                            Cadastros
+                        </h4>                        
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <td>                                        
+                                        <a href="/produtos">Produtos</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>                                        
+                                        <a href="/tipos-produto">Tipos</a>
+                                    </td>
+                                </tr>                  
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</div>        
+
+        <div class="container">              
+            <ng-view></ng-view>
+        </div>
+
+		<!-- Classie - class helper functions by @desandro https://github.com/desandro/classie -->
+		<script src="js/classie.js"></script>
+		
+            
+        <script>
+			var menuLeft = document.getElementById('cbp-spmenu-s1');
+            Array.from(document.getElementsByClassName('showLeft')).forEach(btn => {
+                btn.onclick = function() {
+                    classie.toggle(this, 'active');
+                    classie.toggle(menuLeft, 'cbp-spmenu-open');
+                };
+            });
+		</script> 
+    </body>
+</html>

@@ -20,13 +20,6 @@
 		let clienteId = request.params.clienteId;
 		let connection = app.infra.connectionFactory();
 		let clientesDAO = new app.infra.ClientesDAO(connection);
-
-
-		let cliente = new app.js.classes.Cliente.Cliente(1);
-		cliente.pk = 2;
-		console.log("cliente >>> "+ JSON.stringify(cliente));
-
-
 		clientesDAO.busca(clienteId, function(erros, resultados){
 			if(erros){
 				return next(erros);
@@ -63,7 +56,7 @@
 	saveCliente = function(request, response, next){
 		let cliente = request.body;
 		let connection = app.infra.connectionFactory();
-		let clientesDAO = new app.infra.ClientesDAO(connection);		
+		let clientesDAO = new app.infra.ClientesDAO(connection);
 		clientesDAO.salva(cliente, function(erros, resultados){			
 			if (erros){
 				console.log(erros);			
@@ -75,7 +68,7 @@
 				}
 			});
 			///pegar id inserido			
-			console.log(resultados.insertId);		
+			///console.log(resultados.insertId);		
 		});
 		request = null;
 		connection.end();

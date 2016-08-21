@@ -1,11 +1,6 @@
 function ClienteDiarioDAO(connection){
 	this._connection = connection;
-	this.libSQL = require('./../js/SqlCustom.js');
-
-	this.DateHelper = require('./../js/helpers/DateHelper.js').DateHelper;
-	
-
-
+	this.libSQL = require('./../js/SqlCustom.js');	
 	this.pkFields = ["pk"];
 	this.fields = ["fk_cliente", "data", "texto"];
 	this.objSQL = new this.libSQL.SqlCustom();

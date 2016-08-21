@@ -1,20 +1,17 @@
-			<h4>{{titulo}}</h4>
-			<hr>
+			<div class="btn-group btn-group-justified" role="group" aria-label="...">
+				<div class="btn-group" role="group">
+					<button type="button" class="btn btn-default" data-toggle="tab" data-target="#home">Cliente</button>
+				</div>
+				<div class="btn-group" role="group">
+					<button type="button" class="btn btn-default" data-toggle="tab" data-target="#tab-diario">Diário</button>
+				</div>
+			</div>
+			<hr>	
 			<p class="alert alert-info" ng-show="showMensagem">
 				{{mensagem}}
 			</p>
 			<form novalidate name="formulario" class="form-horizontal" ng-submit="submeter()">
       			<div>			 	
-
-					<ul class="nav nav-tabs">
-						<li class="active"><a data-toggle="tab" data-target="#home">Dados Cliente</a></li>
-						<li>
-							<a data-toggle="tab" data-target="#tab-diario">
-								Diário de Atendimento &nbsp;
-	
-							</a>
-						</li>
-					</ul>
 					<div class="tab-content">
 						<div id="home" class="tab-pane in active">
 							</br>

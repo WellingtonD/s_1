@@ -7,12 +7,11 @@
 		</div>
 	</div>	
 
-	<p class="alert alert-info" ng-show="showMensagem">
-		{{mensagem}}
-	</p>
-
-	<form novalidate name="formulario" class="form-horizontal" ng-submit="submeter()">
-      	<div id="tab-cliente">			 					
+	<form novalidate name="formulario" class="form-vertical" ng-submit="submeter()">
+		
+		<br/>
+		
+      	<div id="tab-cliente" class="well">			 					
 			<div>
 				<div>
 					<div class="btn-group pull-right">
@@ -146,15 +145,18 @@
 					</div>  
 				</div>
 
-   				<div>
+				
+				
+   				<footer>
 					<button type="submit" class="btn btn-sm btn-primary">Salvar</button>			                 	
 					<a href="/clientes" class="btn btn-sm btn-default">Voltar</a>						
-   		    	</div>		  
+   		    	</footer>		  
 			</div>															    
 	    </div>
 	</form>
 
-	<div id="tab-diario" ng-controller="ClienteDiarioController">	
+
+	<div id="tab-diario" ng-controller="ClienteDiarioController" class="well">	
 		<div>
 			<div class="btn-group pull-right">
 				<button type="button" data-toggle="modal" data-target="#mdDiario" class="btn btn-sm btn-success pull-right" ng-click="novo(cliente.pk)">

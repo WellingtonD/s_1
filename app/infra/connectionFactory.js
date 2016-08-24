@@ -4,8 +4,8 @@ var connectMYSQL = function (){
 	return mysql.createConnection({
 		host: 'localhost',
 		user: 'root',
-		password: '',
-		database: 's1'
+		password: 'amora32',
+		database: 's_1'
 	});
 }
 

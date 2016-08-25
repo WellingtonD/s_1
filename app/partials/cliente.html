@@ -1,3 +1,4 @@
+<!--
 	<div class="btn-group btn-group-justified" role="group" aria-label="...">
 		<div class="btn-group" role="group">
 			<a type="button" class="btn btn-default" onclick="document.getElementById('tab-cliente').scrollIntoView();">Cliente</a>
@@ -6,7 +7,7 @@
 			<a type="button" class="btn btn-default" onclick="document.getElementById('tab-diario').scrollIntoView();">Diário</a>
 		</div>
 	</div>	
-
+-->
 	<form novalidate name="formulario" class="form-vertical" ng-submit="submeter()">
 		
 		<br/>
@@ -15,142 +16,152 @@
 			<div>
 				<div>
 					<div class="btn-group pull-right">
+
+						<button type="button" class="btn btn-sm btn-info" data-toggle="collapse" data-target="#a">
+							<i class="fa fa-angle-double-down" aria-hidden="true"></i>
+						</button>
+						
 						<button type="button" class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							<i class="fa fa-bars" aria-hidden="true"></i>
 						</button>
 						<ul class="dropdown-menu">
 							<li><a ng-click="remover(cliente)" ng-show="cliente.pk">Excluir Cliente</a></li>
-						</ul>
+						</ul>	
+
+						<button type="button" class="btn btn-sm btn-danger" data-toggle="collapse" data-target="#a">
+							<i class="fa fa-arrow-left" aria-hidden="true"></i>
+						</button>
+
 					</div>							
 					<h3 class="page-header">{{cliente.nome}}</h3>
 				</div>								
 
-				<div class="form-group">
-					<label class="col-sm-2 control-label" for="nome">Nome</label>
-					<div class="col-sm-10">
-						<input class="form-control" name="nome" type="text" ng-model="cliente.nome" required ng-maxlength="200" ng-minlength="3">
-						<span ng-show="formulario.$submitted && formulario.nome.$error.required" class="form-control alert-danger">
-							Campo obrigatório
-						</span> 
-						<span ng-show="formulario.$submitted && formulario.nome.$error.maxlength" class="form-control alert-danger">
-							No máximo 200 caracteres!
-						</span>  
-						<span ng-show="formulario.nome.$error.minlength" class="form-control alert-danger">
-							No minimo 3 caracteres!
-						</span> 
+				<div class="collapse" id="a">
+					<div class="form-group collapse" id="a">
+						<label class="col-sm-2 control-label" for="nome">Nome</label>
+						<div class="col-sm-10">
+							<input class="form-control" name="nome" type="text" ng-model="cliente.nome" required ng-maxlength="200" ng-minlength="3">
+							<span ng-show="formulario.$submitted && formulario.nome.$error.required" class="form-control alert-danger">
+								Campo obrigatório
+							</span> 
+							<span ng-show="formulario.$submitted && formulario.nome.$error.maxlength" class="form-control alert-danger">
+								No máximo 200 caracteres!
+							</span>  
+							<span ng-show="formulario.nome.$error.minlength" class="form-control alert-danger">
+								No minimo 3 caracteres!
+							</span> 
+						</div>
 					</div>
-				</div>
 
-				<div class="form-group">
-					<label class="col-sm-2 control-label" for="email">E-Mail</label>
-					<div class="col-sm-10">
-						<input class="form-control" name="email" type="text" ng-model="cliente.email">
-					</div>
-					<label class="col-sm-2 control-label" for="facebook">Facebook</label>
-					<div class="col-sm-10">
-						<input class="form-control" name="facebook" type="text" ng-model="cliente.facebook">
-					</div>					
-					<div ng-controller="ClienteTelefonesController">
-						<div class="form-group">
-							<label class="col-sm-2 control-label" for="telefones"></label>
-							<div class="col-sm-10 col-xs-12">
-								<table class="table table-condensed table-hover table-striped" name="telefones">
-									<thead>
-										<tr>
-											<th>DDD</th>
-											<th>
-												Telefone 
-												<button type="button" data-toggle="modal" data-target="#mdTelefone" ng-click="novo(cliente.pk)" class="btn btn-xs btn-default">
-													<i class="fa fa-plus" aria-hidden="true"></i>
-												</button>		
-											</th>
-											<th>Operadora</th>												
-										</tr>
-									</thead>
-									<tbody>
-										<tr ng-repeat="clienteTelefone in clienteTelefones"	data-toggle="modal" data-target="#mdTelefone" ng-click="getByID(clienteTelefone)">
-											<td>{{ clienteTelefone.ddd }}</td>
-											<td>{{ clienteTelefone.telefone }}</td>
-											<td>{{ getFieldByValue(clienteTelefone.fk_operadora, "pk",  operadorasTelefonia, "nome") }}</td>
-										</tr>								
-									</tbody>
-								</table>			        		
-							</div>
-						</div>								
-						<!-- Modal Telefone -->
-						<div id="mdTelefone" class="modal fade" role="dialog">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal">&times;</button>
-										<h4 class="modal-title">{{ titulo }}</h4>
-									</div>
-									<div class="modal-body">											
-										<div class="form-group">
-											<label class="col-sm-2 control-label" for="ddd">DDD</label>
-											<div class="col-sm-10">
-												<input class="form-control" name="ddd" type="text" ng-model="clienteTelefone.ddd">
-											</div>
-											<label class="col-sm-2 control-label" for="telefone">Telefone</label>
-											<div class="col-sm-10">
-												<input class="form-control" name="telefone" type="text" ng-model="clienteTelefone.telefone">
-											</div>											
-											<label class="col-sm-2 control-label" for="operadora">Operadora</label>
-											<div class="col-sm-10">
-												<select ng-model="clienteTelefone.fk_operadora" ng-options="o.pk as o.nome for o in operadorasTelefonia"  class="form-control"></select>															
-											</div>														
-										</div>												
-									</div>
-									<div class="modal-footer">												
-										<button type="button" class="btn btn-sm btn-danger pull-left" ng-click="remover(clienteTelefone)" ng-show="clienteTelefone.pk" data-dismiss="modal">Delete</button>
-										<button type="button" class="btn btn-sm btn-primary" ng-click="submeter(cliente.pk)" data-dismiss="modal">Salvar</button>																							
+					<div class="form-group">
+						<label class="col-sm-2 control-label" for="email">E-Mail</label>
+						<div class="col-sm-10">
+							<input class="form-control" name="email" type="text" ng-model="cliente.email">
+						</div>
+						<label class="col-sm-2 control-label" for="facebook">Facebook</label>
+						<div class="col-sm-10">
+							<input class="form-control" name="facebook" type="text" ng-model="cliente.facebook">
+						</div>					
+						<div ng-controller="ClienteTelefonesController">
+							<div class="form-group">
+								<label class="col-sm-2 control-label" for="telefones"></label>
+								<div class="col-sm-10 col-xs-12">
+									<table class="table table-condensed table-hover table-striped" name="telefones">
+										<thead>
+											<tr>
+												<th>DDD</th>
+												<th>
+													Telefone 
+													<button type="button" data-toggle="modal" data-target="#mdTelefone" ng-click="novo(cliente.pk)" class="btn btn-xs btn-default">
+														<i class="fa fa-plus" aria-hidden="true"></i>
+													</button>		
+												</th>
+												<th>Operadora</th>												
+											</tr>
+										</thead>
+										<tbody>
+											<tr ng-repeat="clienteTelefone in clienteTelefones"	data-toggle="modal" data-target="#mdTelefone" ng-click="getByID(clienteTelefone)">
+												<td>{{ clienteTelefone.ddd }}</td>
+												<td>{{ clienteTelefone.telefone }}</td>
+												<td>{{ getFieldByValue(clienteTelefone.fk_operadora, "pk",  operadorasTelefonia, "nome") }}</td>
+											</tr>								
+										</tbody>
+									</table>			        		
+								</div>
+							</div>								
+							<!-- Modal Telefone -->
+							<div id="mdTelefone" class="modal fade" role="dialog">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal">&times;</button>
+											<h4 class="modal-title">{{ titulo }}</h4>
+										</div>
+										<div class="modal-body">											
+											<div class="form-group">
+												<label class="col-sm-2 control-label" for="ddd">DDD</label>
+												<div class="col-sm-10">
+													<input class="form-control" name="ddd" type="text" ng-model="clienteTelefone.ddd">
+												</div>
+												<label class="col-sm-2 control-label" for="telefone">Telefone</label>
+												<div class="col-sm-10">
+													<input class="form-control" name="telefone" type="text" ng-model="clienteTelefone.telefone">
+												</div>											
+												<label class="col-sm-2 control-label" for="operadora">Operadora</label>
+												<div class="col-sm-10">
+													<select ng-model="clienteTelefone.fk_operadora" ng-options="o.pk as o.nome for o in operadorasTelefonia"  class="form-control"></select>															
+												</div>														
+											</div>												
+										</div>
+										<div class="modal-footer">												
+											<button type="button" class="btn btn-sm btn-danger pull-left" ng-click="remover(clienteTelefone)" ng-show="clienteTelefone.pk" data-dismiss="modal">Delete</button>
+											<button type="button" class="btn btn-sm btn-primary" ng-click="submeter(cliente.pk)" data-dismiss="modal">Salvar</button>																							
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
+
+						<div class="form-group">
+							<label class="col-sm-2 control-label" for="endereco">Endereço</label>
+							<div class="col-sm-10">
+								<input class="form-control" name="endereco" type="text" ng-model="cliente.endereco">
+							</div>
+
+							<label class="col-sm-2 control-label" for="numero">Número</label>
+							<div class="col-sm-10">
+								<input class="form-control" name="numero" type="text" ng-model="cliente.numero">
+							</div>
+
+							<label class="col-sm-2 control-label" for="bairro">Bairro</label>
+							<div class="col-sm-10">
+								<input class="form-control" name="bairro" type="text" ng-model="cliente.bairro">
+							</div>
+
+							<label class="col-sm-2 control-label" for="complemento">Complemento</label>
+							<div class="col-sm-10">
+								<input class="form-control" name="complemento" type="text" ng-model="cliente.complemento">
+							</div>
+									
+							<label class="col-sm-2 control-label" for="cidade">Cidade</label>
+							<div class="col-sm-10">
+								<input class="form-control" name="cidade" type="text" ng-model="cliente.cidade">
+							</div>						   
+						</div>	
+
+						<div class="form-group">
+							<label class="col-sm-2 control-label" for="observacoes">Observações</label>
+							<div class="col-sm-10">
+								<textarea class="form-control" name="observacoes" type="text" ng-model="cliente.observacoes"/>
+							</div>
+						</div>  
 					</div>
 
-					<div class="form-group">
-						<label class="col-sm-2 control-label" for="endereco">Endereço</label>
-						<div class="col-sm-10">
-							<input class="form-control" name="endereco" type="text" ng-model="cliente.endereco">
-						</div>
-
-						<label class="col-sm-2 control-label" for="numero">Número</label>
-						<div class="col-sm-10">
-							<input class="form-control" name="numero" type="text" ng-model="cliente.numero">
-						</div>
-
-						<label class="col-sm-2 control-label" for="bairro">Bairro</label>
-						<div class="col-sm-10">
-							<input class="form-control" name="bairro" type="text" ng-model="cliente.bairro">
-						</div>
-
-						<label class="col-sm-2 control-label" for="complemento">Complemento</label>
-						<div class="col-sm-10">
-							<input class="form-control" name="complemento" type="text" ng-model="cliente.complemento">
-						</div>
-								
-						<label class="col-sm-2 control-label" for="cidade">Cidade</label>
-						<div class="col-sm-10">
-							<input class="form-control" name="cidade" type="text" ng-model="cliente.cidade">
-						</div>						   
-					</div>	
-
-					<div class="form-group">
-						<label class="col-sm-2 control-label" for="observacoes">Observações</label>
-						<div class="col-sm-10">
-							<textarea class="form-control" name="observacoes" type="text" ng-model="cliente.observacoes"/>
-						</div>
-					</div>  
-				</div>
-
-				
-				
-   				<footer>
-					<button type="submit" class="btn btn-sm btn-primary">Salvar</button>			                 	
-					<a href="/clientes" class="btn btn-sm btn-default">Voltar</a>						
-   		    	</footer>		  
+					<footer>
+						<button type="submit" class="btn btn-sm btn-primary">Salvar</button>			                 	
+						<a href="/clientes" class="btn btn-sm btn-default">Voltar</a>						
+					</footer>						
+				</div>	  
 			</div>															    
 	    </div>
 	</form>

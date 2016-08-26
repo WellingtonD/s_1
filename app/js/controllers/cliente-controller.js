@@ -2,12 +2,15 @@ angular.module('estoque').controller('ClienteController', function($scope, recur
     $scope.mensagem = '';
     $scope.cliente = {};
     $scope.showMensagem = false;
+    $scope.mensagemErro = false;
     $scope.titulo = `${$routeParams.clienteId ? `Alterar` : `Novo`} Cliente`;
     $scope.clienteTelefones = [];
 
     ///mostrar mensagem por 2 seegundos
-    doMensagem = function(msg) {
+    $scope.doMensagem = function(msg, erro=false) {
+        
        $scope.mensagem = msg; 
+       $scope.mensagemErro = erro;
        $scope.showMensagem = true;
        $timeout(function(){
           $scope.showMensagem = false;
@@ -21,7 +24,7 @@ angular.module('estoque').controller('ClienteController', function($scope, recur
                 $location.path(`/clientes`);
             }, function(erro){
                 console.log(erro);
-                doMensagem(erro);
+                doMensagem(erro, true);
             });
         } 
     };
@@ -34,7 +37,7 @@ angular.module('estoque').controller('ClienteController', function($scope, recur
             $scope.$broadcast("clienteGet", {clienteId: $routeParams.clienteId});                  
         }, function(erro){
             console.log(erro);            
-            doMensagem(erro);
+            doMensagem(erro, true);
         });
     }
 
@@ -43,12 +46,10 @@ angular.module('estoque').controller('ClienteController', function($scope, recur
         if ($scope.formulario.$valid) {
             cadastroDeClientes.cadastrar($scope.cliente)
                 .then(function(dados) {
-                   $scope.cliente = {};
-                   $location.path(`/clientes`);                 
+                    $scope.doMensagem(dados.mensagem, false);
                 })
-                .catch(function(erro) {
-                    $scope.cliente = {};
-                    doMensagem(erro.mensagem);
+                .catch(function(erro) {                    
+                    $scope.doMensagem(erro.mensagem, true);
                 });
         }
     };

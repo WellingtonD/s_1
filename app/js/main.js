@@ -1,4 +1,4 @@
-angular.module('estoque', ['minhasDiretivas', 'ngAnimate', 'ngRoute', 'meusServicos', 'ngSanitize'])
+angular.module('estoque', ['minhasDiretivas', 'ngAnimate', 'ngRoute', 'meusServicos', 'ngSanitize', 'ui.bootstrap'])
     .config(function($routeProvider, $locationProvider) {
     	//tira o hashtag # da url desde que adicione <base href="/"> no index.html
         $locationProvider.html5Mode(true);
@@ -27,7 +27,13 @@ angular.module('estoque', ['minhasDiretivas', 'ngAnimate', 'ngRoute', 'meusServi
         $routeProvider.when('/clientes/edit/:clienteId', {
             templateUrl: 'partials/cliente.html',
             controller: 'ClienteController'
-        });        
+        });   
+
+
+        $routeProvider.when('/agenda', {
+            templateUrl: 'partials/agenda.html',
+            controller: 'AgendaController'
+        });     
     });
 
 ///https://angular-ui.github.io/ui-router/#resources    

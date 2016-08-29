@@ -1,0 +1,94 @@
+
+<div class="container" style="padding-top: 1em;">
+	<style>
+		.full button span {
+			background-color: limegreen;
+			border-radius: 32px;
+			color: black;
+		}
+		.partially button span {
+			background-color: orange;
+			border-radius: 32px;
+			color: black;
+		}
+	</style>
+	
+	<!-- calendario -->
+	<div ng-controller="DatepickerPopupDemoCtrl" class="row-fluid">
+        <div class="input-group" style="max-width:150px">
+        	<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+          	<span class="input-group-btn">
+        		<button type="button" class="btn btn-default" ng-click="open1()">
+					<i class="glyphicon glyphicon-calendar"></i>
+				</button>
+        	</span>
+        </div>
+	</div>
+
+	<!-- titulo da agenda -->
+    <div class="row">
+        <div class="agenda">    
+            <div class="agenda-title agenda-title-hour">
+				<p>Hora</p>
+			</div>
+            <div class="agenda-title agenda-title-event">
+                <p>Cliente</p>
+            </div>
+        </div>
+    </div>
+
+	<!-- horários da agenda -->
+    <div class="row" ng-repeat="agendaHorario in agendaHorarios">
+        <div class="agenda">    
+            <div class="agenda-line agenda-hour"><p>{{agendaHorario.hora}}</p></div>
+            <div class="agenda-line agenda-event">
+                <ul>
+					<li ng-repeat="agendamento in agendaHorario.agendamentos" data-toggle="modal" data-target="#mdAgendamento">								
+						<a ng-click="alterarAgendamento(agendamento)">
+							{{ agendamento.nomeCliente }}
+						</a>														
+						<span class="pull-right label {{ tiposAtendimento[agendamento.tipoAtendimento].cor }}">
+							{{ tiposAtendimento[agendamento.tipoAtendimento].nome }}
+						</span>																							
+					</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+	<!-- modal de agendamento -->
+	<div id="mdAgendamento" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">{{ agendamento.nomeCliente }}</h4>
+				</div>
+				<div class="modal-body">		
+					<label class="col-sm-2 control-label" for="telefone">Cliente</label>
+					<div class="col-sm-10">
+						<input class="form-control" name="telefone" type="text" ng-model="agendamento.nomeCliente">
+					</div>											
+					<label class="col-sm-2 control-label" for="operadora">Tipo de Atendmento</label>
+					<div class="col-sm-10">
+						<select ng-model="agendamento.tipoAtendimento" class="form-control">
+							<option ng-repeat="tipoAtendimento in tiposAtendimento" value="{{ tipoAtendimento.id }}">{{ tipoAtendimento.nome }}</option>	
+						</select>															
+					</div>																									
+				</div>
+				<div class="modal-footer">												
+					<button type="button" class="btn btn-sm btn-danger pull-left" ng-click="remover(clienteTelefone)" ng-show="clienteTelefone.pk" data-dismiss="modal">
+						<i class="fa fa-trash-o" aria-hidden="true"></i>
+						Delete
+					</button>
+					<button type="button" class="btn btn-sm btn-primary" ng-click="submeter(cliente.pk)" data-dismiss="modal">
+						<i class="fa fa-floppy-o" aria-hidden="true"></i>
+						Salvar
+					</button>																							
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</div>

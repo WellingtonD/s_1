@@ -22,4 +22,8 @@ module.exports = function(app){
         res.sendFile(path.resolve('app/index.html'));
     }); 
 
+
+    app.get('/agenda', function(req, res) {        
+        res.sendFile(path.resolve('app/index.html'));
+    });
 }

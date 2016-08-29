@@ -23,22 +23,29 @@
 <script src="js/summernote/summernote-ext-print.js"></script>
 
 
-
+        
+        
         <script src="js/lib/angular.min.js"></script>
+
+
         <!-- importando o módulo ngAnimte -->
         <script src="js/lib/angular-animate.min.js"></script>
         <!-- importando o módulo ngRoute -->
         <script src="js/lib/angular-route.min.js"></script>   
         <!-- importando o módulo ngResource que substitui o $http -->
         <script src="js/lib/angular-resource.min.js"></script>
+
         <!-- angular bootstrap ui-->
-        <script src="js/lib/ui-bootstrap-tpls-1.3.2.min.js"></script>
+        <script src="js/lib/ui-bootstrap-tpls-2.1.3.min.js"></script>
         
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-sanitize.js"></script>
         
-        <!-- possibilita manter o estado do controller -->
+        <!-- possibilita converter a string em HTML -->
+        <script src="js/lib/angular-sanitize.min.js"></script>
+        
+        <!-- possibilita manter o estado do controller 
         <script data-require="ui-router@*" data-semver="0.2.13" src="//rawgit.com/angular-ui/ui-router/0.2.13/release/angular-ui-router.js"></script>         
         <script src="js/lib/statehelper.min.js"></script>
+        -->
         
         <script src="js/services/meus-servicos.js"></script>
 
@@ -55,7 +62,8 @@
         <script src="js/controllers/cliente-controller.js"></script>
         <script src="js/controllers/cliente-telefones-controller.js"></script>
         <script src="js/controllers/cliente-diario-controller.js"></script>
-        
+        <script src="js/controllers/agenda-controller.js"></script>
+        <script src="js/controllers/datepicker-controller.js"></script>    
         <script src="js/controllers/operadoras-telefonia-controller.js"></script>
         <script src="js/controllers/summernote-controller.js"></script>
 
@@ -63,17 +71,18 @@
 
 
 
+        <link rel="stylesheet" type="text/css" href="css/agenda.css" />
+
+
     	<link rel="stylesheet" type="text/css" href="css/component.css" />
         <link rel="stylesheet" href="css/font-awesome-4.6.3/css/font-awesome.min.css">
 
 
 
-<script src="http://cdn.rawgit.com/summernote/angular-summernote/0.8.1/dist/angular-summernote.min.js"></script>
+        <script src="js/lib/angular-summernote.min.js"></script>
 
 
 		<script src="js/modernizr.custom.js"></script>
-
-        
 
     </head>
     <body>
@@ -131,6 +140,7 @@
                 </div>
             </div>
 		</div>        
+
 
         <div class="container" style="padding-top: 50px;">              
             <ng-view></ng-view>

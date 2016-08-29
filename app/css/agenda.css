@@ -1,0 +1,41 @@
+            .agenda {
+                display: table;
+            }
+            .agenda-title{
+                display: table-cell;
+                padding-top: 0.5em;
+                border-bottom: solid thin;
+                border-color: #CCCCCC;
+            }
+            .agenda-title p{
+                font-weight: bold;
+            }
+
+            .agenda-title-hour p{
+                padding-left: 0.5em;
+                max-width: 25px;
+            }
+            .agenda-title-event{
+                width: 100%;
+            }
+            .agenda-title-event p{
+                padding-left: 2em;
+            }
+            
+            .agenda-line{
+                display: table-cell;
+                padding-left: 0.5em;
+                padding-top: 0.5em;
+                border-bottom: dotted thin;
+                border-color: #CCCCCC;
+            }
+            .agenda-event, p {
+                width: 100%;  
+            }
+            .agenda-hour {
+                max-width: 25px;
+            }
+            .agenda-hour, .agenda-hour p {
+                font-weight: bold;
+            }
+            

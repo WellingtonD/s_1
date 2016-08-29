@@ -13,7 +13,7 @@
 
             .agenda-title-hour p{
                 padding-left: 0.5em;
-                max-width: 25px;
+                max-width: 30px;
             }
             .agenda-title-event{
                 width: 100%;
@@ -33,7 +33,7 @@
                 width: 100%;  
             }
             .agenda-hour {
-                max-width: 25px;
+                width: 30px;
             }
             .agenda-hour, .agenda-hour p {
                 font-weight: bold;

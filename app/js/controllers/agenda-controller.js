@@ -46,7 +46,7 @@ angular.module('estoque').controller('AgendaController', function($scope, $route
             hora : "09:00",
             agendamentos : [
                 {
-                    nomeCliente: "Wellington A. C. Dias",
+                    nomeCliente: "Wellington A C Dias",
                     tipoAtendimento: 0
                 },
                 {

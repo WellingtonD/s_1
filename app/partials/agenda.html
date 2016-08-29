@@ -14,7 +14,7 @@
 	</style>
 	
 	<!-- calendario -->
-	<div ng-controller="DatepickerPopupDemoCtrl" class="row-fluid">
+	<div ng-controller="DatepickerPopupDemoCtrl" class="row">
         <div class="input-group" style="max-width:150px">
         	<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
           	<span class="input-group-btn">
@@ -25,7 +25,35 @@
         </div>
 	</div>
 
-	<!-- titulo da agenda -->
+	<div class="row">
+		<table class="table table-condensed table-striped">
+			<thead>
+				<tr>
+					<th class="agenda-title agenda-title-hour">Hora</th>
+					<th class="agenda-title agenda-title-event">Cliente</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="agendaHorario in agendaHorarios">
+					<td class="agenda-line agenda-hour">{{agendaHorario.hora}}</td>
+					<td class="agenda-line agenda-event">	
+							<li ng-repeat="agendamento in agendaHorario.agendamentos" data-toggle="modal" data-target="#mdAgendamento">								
+								<a class="text-nowrap text-capitalize" ng-click="alterarAgendamento(agendamento)">
+									{{ agendamento.nomeCliente }}
+								</a>														
+								<span class="pull-right label {{ tiposAtendimento[agendamento.tipoAtendimento].cor }}">
+									{{ tiposAtendimento[agendamento.tipoAtendimento].nome }}
+								</span>																							
+							</li>
+						</ul>						
+					</td>
+				</tr>
+			</tbody>	
+		</table>
+	</div>
+
+
+	<!-- titulo da agenda 
     <div class="row">
         <div class="agenda">    
             <div class="agenda-title agenda-title-hour">
@@ -36,15 +64,15 @@
             </div>
         </div>
     </div>
-
-	<!-- horários da agenda -->
+-->
+	<!-- horários da agenda 
     <div class="row" ng-repeat="agendaHorario in agendaHorarios">
         <div class="agenda">    
             <div class="agenda-line agenda-hour"><p>{{agendaHorario.hora}}</p></div>
             <div class="agenda-line agenda-event">
                 <ul>
 					<li ng-repeat="agendamento in agendaHorario.agendamentos" data-toggle="modal" data-target="#mdAgendamento">								
-						<a ng-click="alterarAgendamento(agendamento)">
+						<a class="text-nowrap text-capitalize" ng-click="alterarAgendamento(agendamento)">
 							{{ agendamento.nomeCliente }}
 						</a>														
 						<span class="pull-right label {{ tiposAtendimento[agendamento.tipoAtendimento].cor }}">
@@ -55,7 +83,7 @@
             </div>
         </div>
     </div>
-
+-->
 	<!-- modal de agendamento -->
 	<div id="mdAgendamento" class="modal fade" role="dialog">
 		<div class="modal-dialog">
